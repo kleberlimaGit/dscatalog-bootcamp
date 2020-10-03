@@ -46,13 +46,15 @@ public class CategoryController {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	
+	//=============================================== BUSCA POR ID ======================================================
 	@GetMapping(value="/{id}")
 	public ResponseEntity<CategoryDTO> findById(@PathVariable Long id){
 		CategoryDTO dto = service.findById(id);
 		
 		return ResponseEntity.ok().body(dto);
 	}
-	
+	//=============================================== INSERIR ======================================================
 	@PostMapping
 	public ResponseEntity<CategoryDTO> insert(@RequestBody CategoryDTO dto){
 		dto = service.insert(dto);
@@ -62,12 +64,14 @@ public class CategoryController {
 		return ResponseEntity.created(uri).body(dto); // codigo que deve retornar é o 201 de recurso criado
 	}
 	
+	//=============================================== UPDATE ======================================================
 	@PutMapping(value="/{id}")
 	public ResponseEntity<CategoryDTO> update(@PathVariable Long id ,@RequestBody CategoryDTO dto){
 		dto = service.update(id,dto);
-			return ResponseEntity.ok().body(dto); // codigo que deve retornar é o 201 de recurso criado
+			return ResponseEntity.ok().body(dto); 
 	}
 	
+	//=============================================== DELETE ======================================================
 	@DeleteMapping(value="/{id}")
 	public ResponseEntity<CategoryDTO> delete(@PathVariable Long id){
 		service.delete(id);
