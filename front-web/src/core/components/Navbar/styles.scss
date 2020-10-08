@@ -1,0 +1,35 @@
+.main-nav{
+    height: 70px;
+    color:#FFF;
+    align-items: center;
+    padding-left: 40px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.nav-log-text{
+    color: #FFF;
+}
+
+.main-menu{
+    display: flex;
+    font-size: 18px;
+    width: 383px;
+    justify-content: space-between;
+
+    a{
+        font-style: normal;
+        color: rgba(255,255,255,0.5);
+
+        &.active{
+            color: #FFF;
+            font-weight: 700;
+        }
+
+        &:hover{
+            color: #FFF;
+        }
+    }
+
+    
+}
