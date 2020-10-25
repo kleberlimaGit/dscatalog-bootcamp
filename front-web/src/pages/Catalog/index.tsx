@@ -30,7 +30,9 @@ return (
         
         <div className="catalog-products">
             {productsResponse?.content.map(product =>(
-                <Link to="/products/1" key={product.id} ><ProductCard/></Link>   
+                <Link to="/products/1" key={product.id}>
+                    <ProductCard product={product} />
+                </Link>   
             ))} 
       
         </div>
