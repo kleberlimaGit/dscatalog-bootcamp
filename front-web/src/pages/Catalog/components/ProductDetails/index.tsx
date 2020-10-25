@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import {ReactComponent as ArrowIcon} from '../../../../core/assets/images/Seta.svg'
-import {ReactComponent as Computer} from '../../../../core/assets/images/Computer.svg'
+import { ReactComponent as ArrowIcon } from '../../../../core/assets/images/Seta.svg'
 
 import './styles.scss'
 import ProductPrice from '../../../../core/components/ProductPrice';
+import { makeRequest } from '../../../../core/utils/request';
+import { Product } from '../../../../core/types/Products';
+import ProductInfoLoader from '../Loaders/ProductInfoLoader';
+import ProductDescriptionLoader from '../Loaders/ProductDescripitionLoader';
 
 type ParamsType = {
     productId: string;
@@ -12,38 +15,62 @@ type ParamsType = {
 
 
 const ProductDetails = () => {
-    const {productId} = useParams<ParamsType>();
+    const { productId } = useParams<ParamsType>();
+    const [product, setProduct] = useState<Product>();
+    const [isLoading, setIsLoading] = useState(false);
     console.log(productId);
+
+    useEffect(() => {
+        setIsLoading(true)
+        makeRequest({ url: `/products/${productId}` })
+            .then((response) => setProduct(response.data))
+            .finally(() => {
+                setIsLoading(false);
+            })
+
+    }, [productId])
+
     return (
         <div className="product-details-container">
             <div className="card-base product-details ">
-            <Link to="/products" className="product-details-goback d-flex">
-                <ArrowIcon className="icon-goback"/>
-                <h1>VOLTAR</h1>
-            </Link>
-            <div className="row">
+                <Link to="/products" className="product-details-goback d-flex">
+                    <ArrowIcon className="icon-goback" />
+                    <h1>VOLTAR</h1>
+                </Link>
+                <div className="row">
                 <div className="col-6 pr-5">
-                    <div className="product-details-card text-center">
-                       <Computer className="product-details-image"/> 
+                        {isLoading ? <ProductInfoLoader/> : (
+                            <>
+                                
+                                    <div className="product-details-card text-center">
+                                        <img src={product?.imgUrl} alt={product?.name} className="product-details-image" />
+                                    </div>
+                                    <h1 className="product-type">{product?.name}</h1>
+                                    {product?.price && <ProductPrice price={product?.price} />}
+                        
+                            </>
+
+                        )}
                     </div>
-                    <h1 className="product-type">Computador Desktop - Intel Core i7</h1>
-                    <ProductPrice price={2779}/>
-                </div>
 
-                <div className="col-6 product-details-card">
-                    <h2 className="product-description-title">
-                        Descrição do Produto
-                    </h2>
-                    <p className="product-description">
-                        Seja um mestre em multitarefas com a capacidade para exibir quatro aplicativos simultâneos na tela. 
-                        A tela está ficando abarrotada? Crie áreas de trabalho virtuais para obter mais espaço e trabalhar com os itens que você deseja. 
-                        Além disso, todas as notificações e principais configurações são reunidas em uma única tela de fácil acesso.
-                    </p>
-                </div>
 
+                    <div className="col-6 product-details-card">
+                        {isLoading ? <ProductDescriptionLoader/> : (
+                            <>
+                                <h2 className="product-description-title">
+                                    Descrição do Produto
+                                </h2>
+                                <p className="product-description">
+                                    {product?.description}
+                                </p>
+                            </>
+
+                        )}
+                    </div>
+
+                </div>
             </div>
-            </div>
-            
+
         </div>
     );
 };
