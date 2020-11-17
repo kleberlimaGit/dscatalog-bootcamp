@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import com.devsuperior.dscatalog.entities.User;
 
 public class UserDTO  implements Serializable{
@@ -11,8 +15,15 @@ public class UserDTO  implements Serializable{
 	
 	
 	private Long id;
+	
+	@Size(message = "nome deve ter no mínimo 3 caracteres.", min = 3)
+	@NotBlank(message = "Favor inserir um nome.")
 	private String firstName;
+	
+	@NotBlank(message = "Favor inserir um sobrenome.")
 	private String lastName;
+	
+	@Email(message = "Insina um email válido.")
 	private String email;
 
 	Set<RoleDTO> roles = new HashSet<>();

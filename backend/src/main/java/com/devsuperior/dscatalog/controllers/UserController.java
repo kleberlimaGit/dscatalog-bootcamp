@@ -3,6 +3,8 @@ package com.devsuperior.dscatalog.controllers;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -55,7 +57,7 @@ public class UserController {
 	}
 	//================================================ Novo Usuário ===================================================
 	@PostMapping
-	public ResponseEntity<UserDTO> insert(@RequestBody UserInsertDTO dto){
+	public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserInsertDTO dto){
 		UserDTO newDto = service.insert(dto);
 
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -65,7 +67,7 @@ public class UserController {
 	
 	//================================================ Atualizar Usuário ===================================================
 	@PutMapping(value="/{id}")
-	public ResponseEntity<UserDTO> update(@PathVariable Long id ,@RequestBody UserDTO dto){
+	public ResponseEntity<UserDTO> update(@PathVariable Long id ,@Valid @RequestBody UserDTO dto){
 		dto = service.update(id,dto);
 			return ResponseEntity.ok().body(dto); // codigo que deve retornar é o 201 de recurso criado
 	}
