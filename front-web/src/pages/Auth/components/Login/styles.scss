@@ -29,6 +29,7 @@
 }
 
 .format-link-reg{
+    position: relative;
     text-transform: uppercase;
     font-family: Open Sans;
     font-style: normal;
@@ -37,8 +38,24 @@
     line-height: 25px;
     text-align: center;
     letter-spacing: -0.015em;
-    text-decoration-line: underline;
+    text-decoration-line: none;
     color: #407BFF;
     margin-left: 8px;
+    transition: color 200ms;
+}
+.format-link-reg::after{
+    content: "";
+    width: 0;
+    height: 2.6px;
+    background-color: #407BFF;
+    bottom: 1px;
+    position: absolute;
+    left: 1.8px;
+    transition: background-color 200ms;
+}
+
+.format-link-reg:hover::after{
+        width: 100%;
+        transition: width 300ms ease-in-out;
 }
 
