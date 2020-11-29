@@ -13,7 +13,7 @@ type FormData ={
 }
 
 const Login = () => {
-    const {register, handleSubmit} = useForm<FormData>();
+    const {register, handleSubmit, errors} = useForm<FormData>();
     const [hasError, setHasError] = useState(false);
     const history = useHistory();
 
@@ -39,16 +39,36 @@ const Login = () => {
             )}
 
             <form className="login-form" onSubmit = {handleSubmit(onSubmit)}>
-                
+                <div className="margin-input-32">
                 <input type="email" 
-                className="form-control input-base margin-input-32"
+                className={`form-control input-base ${errors.username ? 'is-invalid': ''}`}
                 placeholder="Email" 
-                name="username" ref={register({required: true})}/>
-
-                <input type="password" 
-                className="form-control input-base" 
-                placeholder="Senha" 
-                name="password" ref={register({required: true})}/>
+                name="username" ref={register({
+                    required: "Campo obrigatório",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Email inválido"
+                    }
+                  })}/>
+                {errors.username && (
+                    <span className="invalid-feedback d-block">
+                        {errors.username.message}
+                    </span>
+                )}
+                </div>
+                
+                <div>
+                    <input type="password" 
+                    className={`form-control input-base ${errors.password ? 'is-invalid' : ''}`}
+                    placeholder="Senha" 
+                    name="password" ref={register({required: "Campo obrigatório"})}/>
+                    {errors.password && (
+                    <span className="invalid-feedback d-block">
+                        {errors.password.message}
+                    </span>
+                    )}
+                </div>
+                
                 
                 <Link to="/admin/auth/recover" className="login-link-recover">
                     Esqueci a senha?
