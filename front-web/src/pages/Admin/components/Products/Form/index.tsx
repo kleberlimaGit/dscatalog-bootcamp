@@ -1,4 +1,4 @@
-import { makeRequest } from 'core/utils/request';
+import { makePrivateRequest } from 'core/utils/request';
 import React, { useState } from 'react';
 import BaseForm from '../../BaseForm';
 import './styles.scss';
@@ -34,7 +34,7 @@ const Form = () => {
             imgUrl: 'https://cdn.dooca.store/659/products/a38079e16f.jpg?v=1600355930',
             categories: [{ id: formData.categories }]
         }
-        makeRequest({ url: '/products', method: 'POST', data: payload })
+        makePrivateRequest({ url: '/products', method: 'POST', data: payload })
     }
 
     return (
