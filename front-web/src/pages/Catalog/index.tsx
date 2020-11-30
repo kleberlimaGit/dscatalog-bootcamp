@@ -8,26 +8,26 @@ import { ProductResponse } from '../../core/types/Products';
 import ProductCardLoader from './components/Loaders/ProductCardLoader';
 
 const Catalog = () => {
-// quando o componente iniciar, buscar a lista de produtos
-
-
-// quando a lista de produtos estiver disponivel, popular um estado no componente e listar os produtos dinamicamente
 
 const [productsResponse, setProductResponse] = useState<ProductResponse>();
 const [isLoading, setIsLoading] = useState(false);
 const [activePage, setActivePage] = useState(0);
 
-console.log(productsResponse);
+
+
 useEffect(() => {
     const params = {
         page:activePage,
         linesPerPage: 12
     }
 
+
     // iniciar o loader
     setIsLoading(true);
     makeRequest({url:'/products', params})
-    .then(response => setProductResponse(response.data))
+    .then(response => {
+        setProductResponse(response.data)
+    })
     .finally(() => {
         setIsLoading(false)
     })

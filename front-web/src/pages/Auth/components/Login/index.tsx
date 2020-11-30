@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ButtonIcon from 'core/components/Button-icon';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import AuthCard from '../Card';
 import { useForm } from 'react-hook-form';
 import './styles.scss';
@@ -12,10 +12,17 @@ type FormData ={
     password:string;
 }
 
+type LocationState = {
+    from :string;
+}
+
 const Login = () => {
     const {register, handleSubmit, errors} = useForm<FormData>();
     const [hasError, setHasError] = useState(false);
     const history = useHistory();
+    const location = useLocation<LocationState>();
+
+    const { from } = location.state || { from: { pathname: "/admin" } };
 
     const onSubmit = (data: FormData) =>{
         //console.log(data);
@@ -23,7 +30,7 @@ const Login = () => {
        .then(response => {
            setHasError(false);
            saveSessionData(response.data);
-           history.push('/admin')
+           history.replace(from);
        })
        .catch(()=> {
            setHasError(true)
