@@ -60,7 +60,7 @@ export const isAuthenticated = () =>{
 
 }
 
-export const isAllowedByRole = (routeRoles: Role[] = []) => {
+export const isAllowedByRole = (routeRoles: Role[] = [] ) => {
     if(routeRoles.length === 0){
         return true;
     }

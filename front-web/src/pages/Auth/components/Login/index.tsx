@@ -3,9 +3,9 @@ import ButtonIcon from 'core/components/Button-icon';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import AuthCard from '../Card';
 import { useForm } from 'react-hook-form';
-import './styles.scss';
 import { makeLogin } from 'core/utils/request';
 import { saveSessionData } from 'core/utils/auth';
+import './styles.scss';
 
 type FormData ={
     username:string;
