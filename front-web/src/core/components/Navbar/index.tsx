@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'
 import { getAccessTokenDecoded, isAllowedByRole, logout } from 'core/utils/auth';
+
 import './styles.scss';
 
 const Navbar = () => {
@@ -15,8 +18,34 @@ const Navbar = () => {
 
     const handleLogout = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) =>{
         event.preventDefault();
-        logout();
+        confirmAlert({
+            customUI: ({ onClose }) => {
+              return (
+                <div className='modal-logout'>
+                  <h1>Você esta certo disso?</h1>
+                  <p>Quer mesmo fazer logout?</p>
+                  <div className="button-config">
+                  <button onClick={onClose} className="button-2" >Não</button>
+                  <button 
+                    onClick={() => {
+                        logout();
+                      onClose();
+                    }}
+                  >
+                    Sim, Fazer Logout!
+                  </button>
+                  </div>
+
+                </div>
+              );
+            }
+          });
+        
     }
+
+
+
+
     return (
         <nav className="row bg-primary main-nav">
             <div className="col-3">
@@ -42,7 +71,9 @@ const Navbar = () => {
             <div className="col-3 text-right">
                 {currentUser && (
                     <>
-                    {currentUser}
+                    <span className ="main-user-name">
+                        {currentUser}
+                    </span>
                 <a href="#logout" 
                 className="nav-link active d-inline"
                 onClick={handleLogout}>

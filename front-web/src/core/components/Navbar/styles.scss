@@ -37,3 +37,39 @@
         color: #FFF;
     }
 }
+.main-user-name{
+    padding: 4px 16px;
+    box-shadow: inset 3px -3px 20px 10px rgba(0,0,0,0.4);
+    border-radius: 4px;
+}
+
+.modal-logout{
+    background-color: #407bff;
+    padding: 32px 64px;
+    border-radius: 12px;
+    text-align: center;
+}
+.modal-logout h1{
+    font-size: 32px;
+    color: #FFF;
+}
+.modal-logout p {
+    color: #FFF;
+} 
+
+.button-config button {
+    background-color: #407bff;
+    border: solid 1px #FFF;
+    padding: 8px 16px;
+    color: #FFF;
+    border-radius: 4px;
+    &:hover{
+        background-color: #2f68e2;
+        transition: background-color 200ms;
+    }
+}
+.button-2{
+    display: inline-block;
+    margin-left: 30px;
+    margin-right: 40px;
+}
