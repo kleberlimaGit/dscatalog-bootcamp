@@ -77,7 +77,7 @@ const Login = () => {
                 </div>
                 
                 
-                <Link to="/admin/auth/recover" className="login-link-recover">
+                <Link to="/auth/recover" className="login-link-recover">
                     Esqueci a senha?
                 </Link>
                 <div className="login-submit-button">
@@ -88,7 +88,7 @@ const Login = () => {
                     <span className="not-registered">
                         Não tem Cadastro?
                     </span>
-                    <Link to="/admin/auth/register" className="format-link-reg">
+                    <Link to="/auth/register" className="format-link-reg">
                         Cadastrar
                     </Link>
                 </div>

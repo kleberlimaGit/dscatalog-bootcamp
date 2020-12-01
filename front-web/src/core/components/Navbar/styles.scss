@@ -3,6 +3,7 @@
     color:#FFF;
     align-items: center;
     padding-left: 40px;
+    padding-right: 40px;
     margin-left: 0;
     margin-right: 0;
 }
@@ -13,23 +14,26 @@
 
 .main-menu{
     display: flex;
+    justify-content: center;
+
+    li:nth-child(2) {
+      margin-left: 85px;
+      margin-right: 85px;  
+    }
+ 
+}
+
+.nav-link{
+    font-style: normal;
     font-size: 18px;
-    width: 383px;
-    justify-content: space-between;
+    color: rgba(255,255,255,0.5);
 
-    a{
-        font-style: normal;
-        color: rgba(255,255,255,0.5);
-
-        &.active{
-            color: #FFF;
-            font-weight: 700;
-        }
-
-        &:hover{
-            color: #FFF;
-        }
+    &.active{
+        color: #FFF;
+        font-weight: 700;
     }
 
-    
+    &:hover{
+        color: #FFF;
+    }
 }
