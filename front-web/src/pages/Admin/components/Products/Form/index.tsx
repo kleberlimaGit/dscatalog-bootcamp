@@ -1,8 +1,10 @@
-import { makePrivateRequest } from 'core/utils/request';
 import React from 'react';
+import { makePrivateRequest } from 'core/utils/request';
+import { toast} from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import BaseForm from '../../BaseForm';
 import './styles.scss';
+import { useHistory } from 'react-router-dom';
 
 type FormState = {
     name: string,
@@ -14,9 +16,18 @@ type FormState = {
 
 const Form = () => {
     const { register, handleSubmit, errors } = useForm<FormState>();
-
+    const history = useHistory();
     const onSubmit = (data: FormState) => {
         makePrivateRequest({ url: '/products', method: 'POST', data })
+        .then(()=>{
+            toast.success(' Produto cadastrado com sucesso!', {
+                autoClose: 2500
+            });
+            history.push('/admin/products');
+        })
+        .catch(()=>{
+            toast.error('Erro ao salvar produto');
+        })
     }
 
     return (
