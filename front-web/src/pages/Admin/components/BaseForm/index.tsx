@@ -20,11 +20,11 @@ const BaseForm = ( {title, children, buttonName}:Props) => {
             </h1>
             {children}
             <div className="base-form-actions">
-                <button className="btn btn-outline-danger button-config  mr-3" onClick={handleCancel}>
+                <button className="btn btn-outline-danger button-base-form mr-3" onClick={handleCancel}>
                     CANCELAR
                 </button>
                 
-                <button className="btn btn-primary  button-config ">{buttonName}</button>
+                <button className="btn btn-primary  button-base-form">{buttonName}</button>
             </div>
         </div>
 
