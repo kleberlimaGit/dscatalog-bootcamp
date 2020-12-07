@@ -4,9 +4,10 @@ import './styles.scss'
 
 type Props = {
     title:string;
+    buttonName:string;
     children:React.ReactNode;
 }
-const BaseForm = ( {title, children}:Props) => {
+const BaseForm = ( {title, children, buttonName}:Props) => {
     const history = useHistory();
     const handleCancel = () => {
         history.push('../')
@@ -19,11 +20,11 @@ const BaseForm = ( {title, children}:Props) => {
             </h1>
             {children}
             <div className="base-form-actions">
-                <button className="btn btn-outline-danger border-radius-10 mr-3" onClick={handleCancel}>
+                <button className="btn btn-outline-danger button-config  mr-3" onClick={handleCancel}>
                     CANCELAR
                 </button>
                 
-                <button className="btn btn-primary border-radius-10">CADASTRAR</button>
+                <button className="btn btn-primary  button-config ">{buttonName}</button>
             </div>
         </div>
 
