@@ -5,6 +5,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Card from '../Card'
+import CardLoader from '../Loaders/ProductCardLoader';
 import './styles.scss'
 
 
@@ -21,7 +22,7 @@ const List = () => {
         const params = {
             page: activePage,
             linesPerPage: 4,
-            direction:'DESC',
+            direction: 'DESC',
             orderBy: 'id'
         }
 
@@ -33,7 +34,7 @@ const List = () => {
             .finally(() => {
                 setIsLoading(false)
             })
-    },[activePage]);
+    }, [activePage]);
 
 
     useEffect(() => {
@@ -45,16 +46,16 @@ const List = () => {
     const handleCreate = () => {
         history.push('/admin/products/create');
     }
-    
-    const onRemove = (productId:number) => {
-        makePrivateRequest({url:`/products/${productId}`, method:"DELETE"})
-        .then(()=> {
-            toast.success('Produto removido com sucesso.');
-            getProducts();
-        })
-        .catch(()=>{
-            toast.error('Erro ao tentar remover produto.');
-        })
+
+    const onRemove = (productId: number) => {
+        makePrivateRequest({ url: `/products/${productId}`, method: "DELETE" })
+            .then(() => {
+                toast.success('Produto removido com sucesso.');
+                getProducts();
+            })
+            .catch(() => {
+                toast.error('Erro ao tentar remover produto.');
+            })
     }
 
     return (
@@ -63,10 +64,12 @@ const List = () => {
                 ADICIONAR
             </button>
             <div className="admin-list-container">
-                {productsResponse?.content.map(product => (
-                    <Card product={product} key={product.id} onRemove={onRemove}/>
-                ))}
-                
+                {isLoading ? <CardLoader /> : (
+                    productsResponse?.content.map(product => (
+                        <Card product={product} key={product.id} onRemove={onRemove} />
+                    ))
+                )}
+
                 {isLoading ? "" : productsResponse && (
                     <Pagination
                         totalPages={productsResponse.totalPages}
