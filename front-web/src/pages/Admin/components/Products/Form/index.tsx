@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makePrivateRequest, makeRequest } from 'core/utils/request';
 import { toast} from 'react-toastify';
+import  Select from 'react-select';
 import { useForm } from 'react-hook-form';
 import BaseForm from '../../BaseForm';
-import './styles.scss';
 import { useHistory, useParams } from 'react-router-dom';
+import './styles.scss';
+import { Category } from 'core/types/Products';
 
 type FormState = {
     name: string,
@@ -21,6 +23,8 @@ const Form = () => {
     const { register, handleSubmit, errors, setValue } = useForm<FormState>();
     const history = useHistory();
     const {productId} = useParams<ParamsType>();
+    const [isLoadingCategories,setIsLoadingCategories] = useState(false)
+    const [categories,setCategories] = useState<Category[]>([])
     const isEditing = productId !== 'create';
     useEffect(()=> {
         if(isEditing){
@@ -39,6 +43,14 @@ const Form = () => {
 
     }, [productId,isEditing,setValue])
 
+    useEffect(()=>{
+        setIsLoadingCategories(true)
+        makeRequest({url:'/categories'})
+        .then(response => setCategories(response.data.content))
+        .finally(()=>{
+            setIsLoadingCategories(false)
+        })
+    },[]);
 
     const onSubmit = (data: FormState) => {
         makePrivateRequest({ 
@@ -79,6 +91,15 @@ const Form = () => {
                             )}
                         </div>
 
+                        <div className="margin-input-32">
+                            <Select options={categories}
+                                getOptionLabel={(option: Category)=> option.name}
+                                getOptionValue={(option:Category)=> String(option.id)}
+                                classNamePrefix="categories-select"
+                                placeholder="Categoria"
+                                isMulti
+                            />
+                        </div>
 
                         <div className="margin-input-32">
                             <input
