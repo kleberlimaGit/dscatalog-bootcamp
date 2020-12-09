@@ -27,3 +27,27 @@
 
 color: #263238;
 }
+.modal-card{
+    background-color: #fff;
+    border: 2px solid black;
+    width: 400px;
+    height: 200px;
+    border-radius: 16px;
+    box-shadow: 2px 2px 4px black;
+    padding: 12px 20px;
+}
+    .button-card {
+    padding: 8px 16px ;
+    border-radius: 8px;
+    color: #fff;
+    background-color:#407bff;
+    border: none;
+    margin-top: 20px ;
+    &:hover{
+        opacity: .7;
+    }
+}
+.button-delete{
+    margin-left: 12px;
+    background-color: rgb(184, 46, 46);
+}

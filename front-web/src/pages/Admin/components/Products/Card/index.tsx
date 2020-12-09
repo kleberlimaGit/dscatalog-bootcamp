@@ -1,16 +1,44 @@
 import ProductPrice from 'core/components/ProductPrice';
 import { Product } from 'core/types/Products';
 import React from 'react';
+import { confirmAlert } from 'react-confirm-alert';
 import { Link } from 'react-router-dom';
 import './styles.scss'
 
 
 type Props = {
     product: Product;
+    onRemove: (productId: number) => void;
 
 }
 
-const Card = ({ product }: Props) => {
+const Card = ({ product, onRemove }: Props) => {
+
+    const handleDelete = () => {
+        confirmAlert({
+            customUI: ({ onClose }) => {
+              return (
+                <div className='modal-card'>
+                  <h1>{`Remover ?`}</h1>
+                  <p>Desja mesmo excluir <strong>{`${product.name}`} ?</strong></p>
+                  <div >
+                  <button onClick={onClose} className="button-card" >Não</button>
+                  <button className=" button-card button-delete"
+                    onClick={() => {
+                        onRemove(product.id)
+                      onClose();
+                    }}
+                  >
+                    Sim, excluir produto.
+                  </button>
+                  </div>
+
+                </div>
+              );
+            }
+          });
+    }
+
     return (
         <div className="card-base product-card-admin">
             <div className="row">
@@ -34,7 +62,12 @@ const Card = ({ product }: Props) => {
                 </div>
                 <div className="col-3 d-flex flex-column justify-content-center">
                     <Link to={`/admin/products/${product.id}`} type="button" className="btn btn-outline-secondary btn-lg mb-2 btn-edit">EDITAR</Link>
-                    <button type="button" className="btn btn-outline-danger btn-lg">EXCLUIR</button>
+                    
+                    <button type="button" 
+                    className="btn btn-outline-danger btn-lg"
+                    onClick={handleDelete}>
+                        EXCLUIR
+                    </button>
 
                 </div>
             </div>
