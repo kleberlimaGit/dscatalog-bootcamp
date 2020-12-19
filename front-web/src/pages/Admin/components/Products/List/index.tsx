@@ -9,8 +9,7 @@ import CardLoader from '../Loaders/ProductCardLoader';
 import './styles.scss'
 
 
-const List = () => {
-
+const List = () => {      
     const [productsResponse, setProductResponse] = useState<ProductResponse>();
     const [isLoading, setIsLoading] = useState(false);
     const [activePage, setActivePage] = useState(0);
@@ -26,8 +25,10 @@ const List = () => {
             orderBy: 'id'
         }
 
+
+
         setIsLoading(true);
-        makeRequest({ url: '/products', params })
+        makeRequest({ url: `/products?page=${activePage}`, params })
             .then(response => {
                 setProductResponse(response.data)
             })
@@ -35,6 +36,7 @@ const List = () => {
                 setIsLoading(false)
             })
     }, [activePage]);
+
 
 
     useEffect(() => {
