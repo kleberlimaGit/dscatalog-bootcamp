@@ -81,3 +81,10 @@ export const logout = () =>{
     localStorage.removeItem('authData');
     history.replace('../auth/login');
 }
+
+export const isTimeExpired = () => {
+    const { exp } = getAccessTokenDecoded();
+    if(Date.now() > exp*1000){
+        localStorage.removeItem('authData');
+    }
+}
