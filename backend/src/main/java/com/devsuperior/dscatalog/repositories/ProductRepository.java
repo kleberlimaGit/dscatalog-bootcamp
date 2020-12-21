@@ -18,7 +18,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 			+ "JOIN p.categories cats "
 			+ "WHERE "
 			+ "(COALESCE(:categories) IS NULL OR cats IN :categories) AND "
-			+ "(LOWER(p.name) LIKE %:name% )")
+			+ "(LOWER(p.name) LIKE LOWER(CONCAT('%', :name , '%' )))")
 	Page<Product> findBySearch(List<Category> categories, String name,  Pageable pageable); // coalesce adptaçao ao valor nulo no banco
 
 }

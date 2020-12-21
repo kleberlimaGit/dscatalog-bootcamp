@@ -45,8 +45,7 @@ public class ProductController {
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		
-		Page<ProductDTO> list = service.findAllPaged(categoryId, name.toLowerCase().trim(), pageRequest);
-		System.out.println("o valor é : "+categoryId);
+		Page<ProductDTO> list = service.findAllPaged(categoryId, name.trim(), pageRequest);
 		
 		return ResponseEntity.ok().body(list);
 	}
