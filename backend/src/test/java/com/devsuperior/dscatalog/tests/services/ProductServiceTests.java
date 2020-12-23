@@ -43,10 +43,10 @@ public class ProductServiceTests {
 	private long nonExistingId;
 	private long dependentId;
 	private Product product;
-	private ProductDTO dto;
+	private Product product2;
 	private PageImpl<Product> page;
 	private PageRequest pageRequest;
-	
+	private ProductDTO dto;
 	
 	@BeforeEach
 	void setUp() {
@@ -55,7 +55,7 @@ public class ProductServiceTests {
 		dependentId = 4L;
 		pageRequest = PageRequest.of(0, 10);
 		product = new Product(26L,"PS5 Novo","asdasd",5.000,"http://ps5.com.br",Instant.parse("2020-07-14T10:00:00Z"));
-		dto = new ProductDTO(product);
+		dto= new ProductDTO(existingId,"PS5 Novo","asdasd",5.000,"http://ps5.com.br",Instant.parse("2020-07-14T10:00:00Z"));
 		
 		
 		Mockito.doNothing().when(repository).deleteById(nonExistingId);
@@ -64,6 +64,7 @@ public class ProductServiceTests {
 		
 		Mockito.doThrow(DataIntegrityViolationException.class).when(repository).deleteById(dependentId);
 		
+		Mockito.when(repository.findById(existingId).map(x -> new ProductDTO())).thenReturn(Optional.of(dto));
 		
 		Mockito.when(repository.findById(existingId)).thenReturn(Optional.of(product));
 		
@@ -78,6 +79,13 @@ public class ProductServiceTests {
 		
 	}
 	
+	
+	@Test
+	public void findByidShouldReturnProductDTO() {
+		
+		service.findById(existingId);
+		Mockito.verify(repository, Mockito.times(1)).findById(existingId);
+	}
 	
 	@Test
 	public void findAllPagedShouldReturnPage() {
@@ -114,8 +122,6 @@ public class ProductServiceTests {
 			service.delete(existingId);
 		});
 			
-		
-		
 		Mockito.verify(repository, Mockito.times(1)).deleteById(existingId);
 	}
 	
