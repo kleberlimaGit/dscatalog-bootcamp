@@ -19,7 +19,7 @@ const Card = ({ product, onRemove }: Props) => {
             customUI: ({ onClose }) => {
               return (
                 <div className='modal-card'>
-                  <h1>{`Remover ?`}</h1>
+                  <h1>{`Remover`}</h1>
                   <p>Desja mesmo excluir <strong>{`${product.name}`} ?</strong></p>
                   <div >
                   <button onClick={onClose} className="button-card" >Não</button>

@@ -22,8 +22,8 @@ const Navbar = () => {
             customUI: ({ onClose }) => {
               return (
                 <div className='modal-logout'>
-                  <h1>Você esta certo disso?</h1>
-                  <p>Quer mesmo fazer logout?</p>
+                  <h1>Logout</h1>
+                  <p className="mt-2">Quer mesmo fazer logout?</p>
                   <div className="button-config">
                   <button onClick={onClose} className="button-2" >Não</button>
                   <button 
