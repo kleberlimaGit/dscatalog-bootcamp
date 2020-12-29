@@ -43,7 +43,6 @@ public class ProductServiceTests {
 	private long nonExistingId;
 	private long dependentId;
 	private Product product;
-	private Product product2;
 	private PageImpl<Product> page;
 	private PageRequest pageRequest;
 	private ProductDTO dto;
