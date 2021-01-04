@@ -103,6 +103,7 @@ const Form = () => {
                                 getOptionValue={(option: Category) => String(option.id)}
                                 classNamePrefix="categories-select"
                                 placeholder="Categorias"
+                                defaultValue = ""
                                 isMulti
                             />
                             {errors.categories && (
