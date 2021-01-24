@@ -8,7 +8,7 @@ const Home = () => (
 
 <div className="row home-container d-flex">
     <div className="home-content d-flex card-base">
-        <div className="col-6">
+        <div className="col-6 config-order">
             <h1>Conheça o melhor<br/> catálogo de produtos</h1>
             <p>Ajudaremos você a encontrar os melhores<br/> produtos disponíveis no mercado</p>
             <Link to="/products">
@@ -16,7 +16,7 @@ const Home = () => (
             </Link>
         </div>
 
-        <div className="col-6">
+        <div className="col-6 image-align">
             <MainImage className="main-image"/>
         </div>
 

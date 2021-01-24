@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ReactComponent as ThreeLineIcon} from '../../assets/images/Union.svg'
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
@@ -8,6 +9,7 @@ import './styles.scss';
 
 const Navbar = () => {
     const [currentUser, setCurrentUser] = useState('');
+    const [collapseNav,setCollapseNav] = useState('');
 
     const location = useLocation();
 
@@ -43,11 +45,21 @@ const Navbar = () => {
         
     }
 
+    const handleCollapse = () =>{
+        if(collapseNav === ''){
+            setCollapseNav('three-line')
+            document.getElementsByClassName('col-6')
+        }
+        else{
+            setCollapseNav('')
+        }
+    }
+
 
 
 
     return (
-        <nav className="row bg-primary main-nav">
+        <nav className={`row bg-primary main-nav ${collapseNav}`}>
             <div className="col-3">
                 <Link to="/" className="nav-log-text">
                     <h4>DS Catalog</h4>
@@ -68,7 +80,7 @@ const Navbar = () => {
                     </li>
                 </ul>
             </div>
-            <div className="col-3 text-right">
+            <div className="col-2 text-right">
                 {currentUser && (
                     <>
                     <span className ="main-user-name">
@@ -86,8 +98,11 @@ const Navbar = () => {
                 {!currentUser && (
                 <Link to ="/auth/login" className="nav-link active">
                 LOGIN
-               </Link>)}
+               </Link>)}   
             </div>
+            <div>
+                <ThreeLineIcon className="icon-line" onClick={handleCollapse}/>
+            </div>  
         </nav>
     );
 }
