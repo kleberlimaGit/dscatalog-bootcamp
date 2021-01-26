@@ -60,13 +60,13 @@ const Navbar = () => {
 
     return (
         <nav className={`row bg-primary main-nav ${collapseNav}`}>
-            <div className="col-3">
+            <div className="col-3 logo-format">
                 <Link to="/" className="nav-log-text">
                     <h4>DS Catalog</h4>
                 </Link>
 
             </div>
-            <div className="col-6">
+            <div className="col-6 menu-format">
                 <ul className="main-menu">
 
                     <li>

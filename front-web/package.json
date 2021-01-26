@@ -16,7 +16,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^5.1.6",
     "@types/react-select": "^3.0.27",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.2",
     "jwt-decode": "^3.1.2",
     "node-sass": "^4.14.1",

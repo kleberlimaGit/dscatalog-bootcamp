@@ -110,10 +110,7 @@
         li{
             margin: 0;
         }
-        .icon-line{
-            margin-left: 246px;
-           
-        }
+
         
     }
 
@@ -121,26 +118,98 @@
 
 
 @media(max-width:768px){
+    .main-nav.three-line{
+        .icon-line{
+            margin-left: 246px;
+           
+        }
+    }
+    
     .nav-log-text h4{
         font-size: 1.4em;
      
      }
 }
-@media(max-width:665px){
+@media(max-width:500px){
+    
     .nav-log-text h4{
-        font-size: 1.3em;
+      
+        font-size: 0.8rem;
      
      }
+     .main-nav{
+         .icon-line{
+             width: 14px;
+         }
+     }
+     .main-nav.three-line{
+        .icon-line{
+            margin-left: 156px;
+        }
+        .nav-link,li{
+            font-size: 12px;
+        }
+        .nav-log-text h4{
+            margin-top: 8px;
+        }
+    }
 }
-@media(max-width:641px){
+
+@media(max-width:425px){
+    .main-nav{
+        .icon-line{
+            width: 13px;
+        }
+    }
+    
     .nav-log-text h4{
-        font-size: 1.2em;
+        margin-top: 8px;
+        font-size: 0.6rem;
      
      }
-}
-@media(max-width:530px){
-    .nav-log-text h4{
-        font-size: 1em;
-     
+
+     .main-nav.three-line{
+         .icon-line{
+             margin-left: 126px;
+         }
+         .nav-link,li{
+             font-size: 12px;
+         }
      }
 }
+
+     @media(max-width:360px){
+        .main-nav{
+            .icon-line{
+                width: 13px;
+            }
+            .col-3.logo-format{
+                padding: 0;
+            }
+        }
+        
+        .nav-log-text h4{
+            margin-top: 8px;
+            font-size: 10px;
+         
+         }
+    
+         .main-nav.three-line{
+             .icon-line{
+                 margin-left: 100px;
+             }
+             .nav-link,li{
+                 font-size: 12px;
+             }
+             .col-2.text-right, .col-6.menu-format{
+                 padding: 0;
+             }
+             .menu-format{
+                 height: 90px;
+             }
+         }
+    
+         
+
+}
+
