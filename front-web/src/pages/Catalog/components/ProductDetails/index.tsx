@@ -42,7 +42,7 @@ const ProductDetails = () => {
                         {isLoading ? <ProductInfoLoader/> : (
                             <>
                                 
-                                    <div className="product-details-card mx-auto">
+                                    <div className="product-details-card text-center mx-auto">
                                         <img src={product?.imgUrl} alt={product?.name} className="product-details-image " />
                                     </div>
                                     <h1 className="product-type">{product?.name}</h1>
