@@ -37,13 +37,13 @@ const ProductDetails = () => {
                     <ArrowIcon className="icon-goback" />
                     <h1>VOLTAR</h1>
                 </Link>
-                <div className="row">
-                <div className="col-6 pr-5">
+                <div className="row product-details-content">
+                    <div className="col-lg-6 pr-lg-5 pr-sm-3 mb-sm-4 px-0 ">
                         {isLoading ? <ProductInfoLoader/> : (
                             <>
                                 
-                                    <div className="product-details-card text-center">
-                                        <img src={product?.imgUrl} alt={product?.name} className="product-details-image" />
+                                    <div className="product-details-card mx-auto">
+                                        <img src={product?.imgUrl} alt={product?.name} className="product-details-image " />
                                     </div>
                                     <h1 className="product-type">{product?.name}</h1>
                                     {product?.price && <ProductPrice price={product?.price} />}
@@ -54,7 +54,7 @@ const ProductDetails = () => {
                     </div>
 
 
-                    <div className="col-6 product-details-card">
+                    <div className="col-lg-6 product-details-card">
                         {isLoading ? <ProductDescriptionLoader/> : (
                             <>
                                 <h2 className="product-description-title">
@@ -68,7 +68,7 @@ const ProductDetails = () => {
                         )}
                     </div>
 
-                </div>
+                    </div>
             </div>
 
         </div>

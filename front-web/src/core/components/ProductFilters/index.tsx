@@ -55,7 +55,7 @@ const ProductFilters = ({onSearch}: Props) => {
         <div className="card-base product-filters-container">
             <div className="input-search">
                 <input type="text" 
-                    className="form-control" 
+                    className="form-control input-test" 
                     placeholder="Pesquisar Produto"
                     value={name}
                     onChange={event => handleChangeName(event.target.value)} />

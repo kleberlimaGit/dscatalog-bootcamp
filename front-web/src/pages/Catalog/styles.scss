@@ -19,3 +19,18 @@
     background-color: red;
 }
 
+
+@media(max-width:768px){
+    .catalog-title{
+        font-size: 16px;
+    }
+}
+
+@media(max-width:500px){
+    .catalog-title{
+        display: none;
+    }
+    .catalog-products{
+        justify-content: center;
+    }
+}

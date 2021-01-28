@@ -71,3 +71,43 @@
 .product-details .product-currency{
     font-size: 28px;
 }
+
+@media(max-width:1024px){
+
+    .product-details-image{
+        width: 100%;
+        height: 100%;
+    }
+    .product-type{
+        font-size: 24px;
+    }
+    .product-details .product-price{
+        font-size: 40px;
+    }
+    .product-details .product-currency{
+        font-size: 24px;
+    }
+}
+
+@media(max-width:425px){
+    .product-details{
+        padding: 0;
+    }
+    .product-type{
+        font-size: 24px;
+
+    }
+    .product-details-image{
+        width: 80%;
+        height: 80%;
+    }
+    .product-details-card{
+        margin: 0;
+        width: 300px;
+    }
+    .product-details-content{
+        
+    }
+}
+
+
