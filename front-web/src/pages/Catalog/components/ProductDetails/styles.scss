@@ -105,8 +105,43 @@
         margin: 0;
         width: 300px;
     }
-    .product-details-content{
-        
+    .product-type,.product-currency{
+        margin-left: 50px;
+    }
+    .product-price-container{
+        margin-top: 0 !important;
+        margin-bottom: 20px;
+    }
+    .product-details-goback{
+        padding-top: 30px;
+        margin-left: 40px;
+    }
+    .product-details-container{
+        padding: 0 10px;
+    }
+
+}
+
+
+
+@media(max-width:320px){
+    .product-details{
+        display: none;
+    }
+    .product-details-container{
+        padding: 0 40px;
+    }
+    .product-details-container::after{
+        content: "Dispositivo incompatível com o sistema";
+        font-weight: bold;
+        top: 0;
+        left: 0;
+        margin-top: 250px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
     }
 }
 

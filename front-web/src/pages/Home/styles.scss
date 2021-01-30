@@ -170,25 +170,20 @@
     }
 }
 
-@media(max-width:375px){
+@media(max-width:320px){
     .home-content{
-        h1{
-            font-size:15px;
-            line-height: 26px;
-        }
-        p{
-            font-size: 12px;
-            margin-top: 15px;
-            margin-bottom: 15px;
-        }
-        .col-6.config-order{
-            padding: 0;
-        }
-        h5{
-            font-size: 8px;
-        }
-        .main-image{
-            height: 60%;
-        }
+        display: none !important;
+    }
+    .home-container::after{
+        content: "Dispositivo incompatível com o sistema";
+        font-weight: bold;
+        top: 0;
+        left: 0;
+        margin-top: 250px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
     }
 }

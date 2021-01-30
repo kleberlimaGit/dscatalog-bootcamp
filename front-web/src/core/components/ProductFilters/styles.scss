@@ -65,3 +65,9 @@
     }
     
 }
+
+@media(max-width:320px){
+    .product-filters-container{
+        display: none;
+    }
+}

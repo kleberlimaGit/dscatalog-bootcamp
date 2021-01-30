@@ -38,7 +38,7 @@ const ProductDetails = () => {
                     <h1>VOLTAR</h1>
                 </Link>
                 <div className="row product-details-content">
-                    <div className="col-lg-6 pr-lg-5 pr-sm-3 mb-sm-4 px-0 ">
+                    <div className="col-lg-6 pr-lg-5 pr-sm-3 mb-sm-4 px-0 col-12">
                         {isLoading ? <ProductInfoLoader/> : (
                             <>
                                 
@@ -54,7 +54,7 @@ const ProductDetails = () => {
                     </div>
 
 
-                    <div className="col-lg-6 product-details-card">
+                    <div className="col-lg-6 product-details-card mx-auto">
                         {isLoading ? <ProductDescriptionLoader/> : (
                             <>
                                 <h2 className="product-description-title">
