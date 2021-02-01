@@ -7,11 +7,13 @@ import BaseForm from '../../BaseForm';
 import { useHistory, useParams } from 'react-router-dom';
 import './styles.scss';
 import { Category } from 'core/types/Products';
+import DescriptionField from './DescriptionField';
+import { EditorState } from 'draft-js';
 
-type FormState = {
+export type FormState = {
     name: string;
     price: string;
-    description: string;
+    description: EditorState;
     categories: Category[];
     imgUrl: string;
 }
@@ -144,11 +146,7 @@ const Form = () => {
 
                     </div>
                     <div className="col-6">
-                        <textarea name="description"
-                            ref={register}
-                            id="" cols={30} rows={10}
-                            className="form-control input-base area-text-config"
-                            placeholder="Descrição" />
+                        <DescriptionField control={control}/>
                     </div>
                 </div>
 
