@@ -58,4 +58,39 @@
         width: 100%;
         transition: width 300ms ease-in-out;
 }
+.content-password{
+    position: relative;
+}
 
+.input-eye{
+    position: absolute;
+    top: 35%;
+    right: 3%;
+    cursor: pointer;
+}
+
+@media screen and (max-width:1024px){
+    .auth-card{
+        margin: auto;
+
+    }
+}
+
+@media screen and (max-width:500px){
+    .auth-card{
+        width: 374px;
+        padding: 76px 20px 40px 20px;
+    }
+    .login-link-recover{
+        margin-bottom: 80px;
+    }
+}
+@media screen and (max-width:375px){
+    .auth-card{
+        width: 320px;
+        padding: 76px 20px 40px 20px;
+    }
+    .login-link-recover{
+        margin-bottom: 80px;
+    }
+}

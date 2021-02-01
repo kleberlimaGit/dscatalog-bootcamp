@@ -170,20 +170,4 @@
     }
 }
 
-@media(max-width:320px){
-    .home-content{
-        display: none !important;
-    }
-    .home-container::after{
-        content: "Dispositivo incompatível com o sistema";
-        font-weight: bold;
-        top: 0;
-        left: 0;
-        margin-top: 250px;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-    }
-}
+

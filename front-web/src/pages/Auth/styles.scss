@@ -33,3 +33,29 @@
     color: #9E9E9E;
 
 }
+@media screen and (max-width:1024px){
+    .auth-info{
+        display: none;
+    }
+    .auth-container{
+        padding: 100 50px 20px 50px;
+        display: flex;
+        justify-content: center;
+        background: url(~core/assets/images/AuthBackgroundMedia.svg) no-repeat;
+        background-size: 100%;
+    }
+}
+
+@media (max-width:768px){
+    .auth-info{
+        display: none;
+    }
+    .auth-container{
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        background: url(~core/assets/images/AuthBackgroundMedia.svg) no-repeat;
+        background-size: 100%;
+    }
+
+}

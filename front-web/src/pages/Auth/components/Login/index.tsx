@@ -21,6 +21,9 @@ const Login = () => {
     const [hasError, setHasError] = useState(false);
     const history = useHistory();
     const location = useLocation<LocationState>();
+    const [passwordIcon,setPasswordIcon] = useState('fa-eye-slash');
+    const [inputType, setInputType] = useState('password');
+
 
     const { from } = location.state || { from: { pathname: "/admin" } };
 
@@ -36,6 +39,18 @@ const Login = () => {
            setHasError(true)
        })
     }
+
+    const handleShowPassword = () =>{
+        if(passwordIcon === "fa-eye-slash"){
+            setPasswordIcon('fa-eye')
+            setInputType('text')
+        }else{
+            setPasswordIcon('fa-eye-slash')
+            setInputType('password') 
+        }
+    }
+
+
 
     return (
         <AuthCard title="Login">
@@ -64,11 +79,12 @@ const Login = () => {
                 )}
                 </div>
                 
-                <div>
-                    <input type="password" 
-                    className={`form-control input-base ${errors.password ? 'is-invalid' : ''}`}
+                <div className="content-password">
+                    <input type={inputType}
+                    className={`form-control input-base input-password ${errors.password ? 'is-invalid' : ''}`}
                     placeholder="Senha" 
                     name="password" ref={register({required: "Campo obrigatório"})}/>
+                    <span className={`input-eye d-inline-block far ${passwordIcon}`} onClick={handleShowPassword}></span>
                     {errors.password && (
                     <span className="invalid-feedback d-block">
                         {errors.password.message}
