@@ -5,10 +5,10 @@ import Select from 'react-select';
 import { useForm, Controller } from 'react-hook-form';
 import BaseForm from '../../BaseForm';
 import { useHistory, useParams } from 'react-router-dom';
-import './styles.scss';
 import { Category } from 'core/types/Products';
 import DescriptionField from './DescriptionField';
 import { EditorState } from 'draft-js';
+import './styles.scss';
 
 export type FormState = {
     name: string;
@@ -70,6 +70,8 @@ const Form = () => {
             })
     }
 
+    
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <BaseForm title={`${isEditing ? 'editar produto' : 'cadastrar um produto'}`} buttonName={`${isEditing ? 'SALVAR' : 'CADASTRAR'}`}>
@@ -115,11 +117,11 @@ const Form = () => {
                         </div>
 
                         <div className="margin-input-32">
-                            <input
+                            <input 
                                 ref={register({ required: "Campo obrigatório" })}
-                                type="text"
+                                type="number"
                                 name="price"
-
+                                data-mask="#.##0,00"
                                 className="form-control input-base"
                                 placeholder="Preço" />
                             {errors.price && (

@@ -9,7 +9,7 @@
     letter-spacing: -0.015em;
     color: #407BFF;
     margin: 15px 0 106px;
-    display: block;
+    display: inline-block;
 }
 
 .login-submit-button{
@@ -58,15 +58,38 @@
         width: 100%;
         transition: width 300ms ease-in-out;
 }
-.content-password{
-    position: relative;
+
+.is-invalid{
+    background-image: none !important;
+}
+.input-password{
+    border-right: none;
+    border-radius: 10px 0 0 10px;
 }
 
 .input-eye{
-    position: absolute;
-    top: 35%;
-    right: 3%;
+    width: 50px;
+    border: 1px solid #e1e1e1;
+    border-left: none;
+    line-height: 25px;
+    font-size: 18px;
+    border-radius: 0 10px 10px 0;
     cursor: pointer;
+
+}
+.form-control{
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.input-password:focus +{
+    .input-eye{
+        border-color: #c3d4fd;
+    }
+    .input-eye.is-invalid{
+        border-color:  #dc3545;
+    }
+    
 }
 
 @media screen and (max-width:1024px){

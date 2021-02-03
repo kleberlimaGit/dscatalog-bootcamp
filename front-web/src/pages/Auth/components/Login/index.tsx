@@ -80,11 +80,13 @@ const Login = () => {
                 </div>
                 
                 <div className="content-password">
-                    <input type={inputType}
-                    className={`form-control input-base input-password ${errors.password ? 'is-invalid' : ''}`}
-                    placeholder="Senha" 
-                    name="password" ref={register({required: "Campo obrigatório"})}/>
-                    <span className={`input-eye d-inline-block far ${passwordIcon}`} onClick={handleShowPassword}></span>
+                    <div className="d-flex justify-content-center align-items-center">
+                        <input type={inputType}
+                        className={`form-control input-base input-password pr-0 ${errors.password ? 'is-invalid' : ''}`}
+                        placeholder="Senha" 
+                        name="password" ref={register({required: "Campo obrigatório"})}/>
+                        <span className={`input-eye d-inline-block form-control far ${passwordIcon} ${errors.password ? 'is-invalid' : ''} `} onClick={handleShowPassword}></span>
+                    </div>    
                     {errors.password && (
                     <span className="invalid-feedback d-block">
                         {errors.password.message}
