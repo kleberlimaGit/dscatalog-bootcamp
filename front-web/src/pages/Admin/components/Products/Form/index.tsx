@@ -7,7 +7,9 @@ import BaseForm from '../../BaseForm';
 import { useHistory, useParams } from 'react-router-dom';
 import { Category } from 'core/types/Products';
 import DescriptionField from './DescriptionField';
-import { EditorState } from 'draft-js';
+import { convertToRaw, EditorState } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+import { stateFromHTML } from 'draft-js-import-html'
 import './styles.scss';
 
 export type FormState = {
@@ -34,11 +36,13 @@ const Form = () => {
         if (isEditing) {
             makeRequest({ url: `/products/${productId}` })
                 .then(response => {
+                    const contentState = stateFromHTML(response.data.description);
+                    const descriptionAsEditorState = EditorState.createWithContent(contentState);
                     setValue('name', response.data.name)
                     setValue('price', response.data.price)
-                    setValue('description', response.data.description)
                     setValue('imgUrl', response.data.imgUrl)
                     setValue('categories',response.data.categories)
+                    setValue('description', descriptionAsEditorState)
                 })
         }
 
@@ -53,11 +57,22 @@ const Form = () => {
             })
     }, []);
 
+
+    const getDescriptionFromEditor = (editorState: EditorState) => {
+        return draftToHtml(convertToRaw(editorState.getCurrentContent()))
+    }
+
     const onSubmit = (data: FormState) => {
+
+        const payload = {
+            ...data,
+            description: getDescriptionFromEditor(data.description)
+        }
+
         makePrivateRequest({
             url: isEditing ? `/products/${productId}` : '/products',
             method: isEditing ? 'PUT' : 'POST',
-            data
+            data: payload
         })
             .then(() => {
                 toast.success(' Produto cadastrado com sucesso!', {
@@ -121,7 +136,6 @@ const Form = () => {
                                 ref={register({ required: "Campo obrigatório" })}
                                 type="number"
                                 name="price"
-                                data-mask="#.##0,00"
                                 className="form-control input-base"
                                 placeholder="Preço" />
                             {errors.price && (
