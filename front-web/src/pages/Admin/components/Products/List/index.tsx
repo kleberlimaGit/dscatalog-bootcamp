@@ -8,6 +8,7 @@ import { makePrivateRequest, makeRequest } from 'core/utils/request';
 import Card from '../Card'
 import CardLoader from '../Loaders/ProductCardLoader';
 import './styles.scss'
+import ProductFilters, {FilterForm} from 'core/components/ProductFilters';
 
 
 const List = () => {      
@@ -24,12 +25,14 @@ const List = () => {
         },
     });
 
-    const getProducts = useCallback(() => {
+    const getProducts = useCallback((filter?:FilterForm) => {
         const params = {
             page: activePage,
             linesPerPage: 4,
             direction: 'DESC',
-            orderBy: 'id'
+            orderBy: 'id',
+            name:filter?.name,
+            category: filter?.categoryId
         }
 
 
@@ -69,9 +72,12 @@ const List = () => {
 
     return (
         <div className="admin-products-list">
-            <button className="btn btn-primary btn-lg" onClick={handleCreate} >
-                ADICIONAR
-            </button>
+            <div className="d-flex justify-content-between">
+                <button className="btn btn-primary btn-lg px-5 btn-radiuos" onClick={handleCreate} >
+                    ADICIONAR
+                </button>
+                <ProductFilters onSearch={filter => getProducts(filter)}/>
+            </div>    
             <div className="admin-list-container">
                 {isLoading ? <CardLoader /> : (
                     productsResponse?.content.map(product => (

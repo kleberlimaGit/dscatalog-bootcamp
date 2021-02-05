@@ -47,7 +47,7 @@ const ProductFilters = ({onSearch}: Props) => {
         setCategory(undefined)
         setName('');
 
-        onSearch({ name,  categoryId: undefined })
+        onSearch({ name:(''),  categoryId: undefined })
 
     }
 

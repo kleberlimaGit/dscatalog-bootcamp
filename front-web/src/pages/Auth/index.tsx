@@ -3,6 +3,8 @@ import './styles.scss';
 import { ReactComponent as AuthImage } from 'core/assets/images/Desenho-login.svg';
 import { Route, Switch } from 'react-router-dom';
 import Login from './components/Login';
+import Cadastro from './components/Cadastro';
+import Recovery from './components/Recovery';
 
 
 const Auth = () => (
@@ -24,10 +26,10 @@ const Auth = () => (
                         <Login/>
                     </Route>
                     <Route path="/auth/register">
-                        <h1>Cadastro</h1>
+                        <Cadastro/>
                     </Route>
                     <Route path="/auth/recover">
-                        <h1>Recuperar</h1>
+                        <Recovery/>
                     </Route>
 
                 </Switch>
