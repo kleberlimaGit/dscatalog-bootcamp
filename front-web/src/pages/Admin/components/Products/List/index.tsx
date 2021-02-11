@@ -32,7 +32,7 @@ const List = () => {
             direction: 'DESC',
             orderBy: 'id',
             name:filter?.name,
-            category: filter?.categoryId
+            categoryId: filter?.categoryId
         }
 
 
