@@ -3,18 +3,21 @@ import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
-import { ProductResponse } from 'core/types/Products';
+import { Category, ProductResponse } from 'core/types/Products';
 import { makePrivateRequest, makeRequest } from 'core/utils/request';
 import Card from '../Card'
 import CardLoader from '../Loaders/ProductCardLoader';
 import './styles.scss'
-import ProductFilters, {FilterForm} from 'core/components/ProductFilters';
+import ProductFilters from 'core/components/ProductFilters';
+
 
 
 const List = () => {      
     const [productsResponse, setProductResponse] = useState<ProductResponse>();
     const [isLoading, setIsLoading] = useState(false);
     const [activePage, setActivePage] = useState(0);
+    const [name,setName] = useState('');
+    const [category,setCategory] = useState<Category>();
     const history = useHistory();
 
     const theme = createMuiTheme({
@@ -25,14 +28,14 @@ const List = () => {
         },
     });
 
-    const getProducts = useCallback((filter?:FilterForm) => {
+    const getProducts = useCallback(() => {
         const params = {
             page: activePage,
             linesPerPage: 4,
             direction: 'DESC',
             orderBy: 'id',
-            name:filter?.name,
-            categoryId: filter?.categoryId
+            name: name,
+            categoryId: category?.id
         }
 
 
@@ -45,7 +48,7 @@ const List = () => {
             .finally(() => {
                 setIsLoading(false)
             })
-    }, [activePage]);
+    }, [activePage,name, category]);
 
 
 
@@ -53,7 +56,24 @@ const List = () => {
         getProducts();
     }, [getProducts]);
 
+    const handleChangeName = (name:string) =>{
+        setActivePage(0);
+        setName(name);
 
+    }
+
+    const handleChangeCategory = (category:Category) => {
+        setActivePage(0);
+        setCategory(category)
+
+    }
+
+    const clearFilters = () => {
+        setActivePage(0);
+        setCategory(undefined)
+        setName('');
+
+    }
 
     const handleCreate = () => {
         history.push('/admin/products/create');
@@ -76,7 +96,11 @@ const List = () => {
                 <button className="btn btn-primary btn-lg px-5 btn-radiuos" onClick={handleCreate} >
                     ADICIONAR
                 </button>
-                <ProductFilters onSearch={filter => getProducts(filter)}/>
+                <ProductFilters name={name}
+                category={category}
+                handleChangeCategory={handleChangeCategory}
+                handleChangeName={handleChangeName}
+                clearFilters={clearFilters}/>
             </div>    
             <div className="admin-list-container">
                 {isLoading ? <CardLoader /> : (

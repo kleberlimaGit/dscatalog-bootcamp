@@ -5,22 +5,24 @@ import './styles.scss'
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 import { makeRequest } from '../../core/utils/request';
-import { ProductResponse } from '../../core/types/Products';
+import { Category, ProductResponse } from '../../core/types/Products';
 import ProductCardLoader from './components/Loaders/ProductCardLoader';
-import ProductFilters, { FilterForm } from 'core/components/ProductFilters';
+import ProductFilters from 'core/components/ProductFilters';
 
 const Catalog = () => {
 
     const [productsResponse, setProductResponse] = useState<ProductResponse>();
     const [isLoading, setIsLoading] = useState(false);
     const [activePage, setActivePage] = useState(0);
+    const [name,setName] = useState('');
+    const [category,setCategory] = useState<Category>();
 
-    const getProducts = useCallback((filter?: FilterForm) => {
+    const getProducts = useCallback(() => {
         const params = {
             page: activePage,
             linesPerPage: 12,
-            name: filter?.name,
-            categoryId: filter?.categoryId
+            name: name,
+            categoryId: category?.id
         }
 
 
@@ -29,11 +31,12 @@ const Catalog = () => {
         makeRequest({ url: '/products', params })
             .then(response => {
                 setProductResponse(response.data)
+                
             })
             .finally(() => {
                 setIsLoading(false)
             })
-    },[activePage])
+    },[activePage,name,category])
 
 
     const theme = createMuiTheme({
@@ -49,11 +52,34 @@ const Catalog = () => {
         getProducts();
     }, [getProducts]);
 
+    const handleChangeName = (name:string) =>{
+        setActivePage(0)
+        setName(name);
+
+    }
+
+    const handleChangeCategory = (category:Category) => {
+        setActivePage(0)
+        setCategory(category)
+    }
+
+    const clearFilters = () => {
+        setActivePage(0)
+        setCategory(undefined)
+        setName('');
+
+
+    }
+
     return (
         <div className="catalog-container">
            <div className="d-flex justify-content-between">
                 <h1 className="catalog-title">Catálogo de produtos</h1>
-                <ProductFilters onSearch={filter => getProducts(filter)}/>
+                <ProductFilters name={name}
+                category={category}
+                handleChangeCategory={handleChangeCategory}
+                handleChangeName={handleChangeName}
+                clearFilters={clearFilters}/>
            </div>
 
             <div className="catalog-products">
