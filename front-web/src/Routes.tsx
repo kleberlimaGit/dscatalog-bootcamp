@@ -9,8 +9,11 @@ import Auth from './pages/Auth';
 import './core/utils/history';
 import history from './core/utils/history';
 
-const Routes = () => (
+
+const Routes = () => ( 
+     
 <Router history={history} >
+    
 <Navbar/>
     <Switch>
 
@@ -19,8 +22,8 @@ const Routes = () => (
             <Home/>
         </Route>
 
-        <Route path="/products" exact>
-            <Catalog/>
+        <Route path="/products" exact>   
+            <Catalog />
         </Route>
 
         <Route path="/products/:productId">

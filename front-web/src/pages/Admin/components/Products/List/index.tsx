@@ -12,10 +12,12 @@ import ProductFilters from 'core/components/ProductFilters';
 
 
 
-const List = () => {      
+const List = () => {
+    
     const [productsResponse, setProductResponse] = useState<ProductResponse>();
     const [isLoading, setIsLoading] = useState(false);
-    const [activePage, setActivePage] = useState(0);
+    const initialPage = () => Number(window.sessionStorage.getItem("page") || null)
+    const [activePage, setActivePage] = useState(initialPage);
     const [name,setName] = useState('');
     const [category,setCategory] = useState<Category>();
     const history = useHistory();
@@ -38,10 +40,10 @@ const List = () => {
             categoryId: category?.id
         }
 
-
+        window.sessionStorage.setItem("page",String(activePage))
 
         setIsLoading(true);
-        makeRequest({ url: `/products?page=${activePage}`, params })
+        makeRequest({ url: `/products`, params })
             .then(response => {
                 setProductResponse(response.data)
             })

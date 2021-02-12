@@ -55,6 +55,8 @@ const Navbar = () => {
         }
     }
 
+    const handleResetSession = () => window.sessionStorage.removeItem("page")
+
 
 
 
@@ -70,13 +72,13 @@ const Navbar = () => {
                 <ul className="main-menu">
 
                     <li>
-                        <NavLink exact to="/" activeClassName="active" className="nav-link">HOME</NavLink>
+                        <NavLink exact to="/" activeClassName="active" className="nav-link" onClick={handleResetSession}>HOME</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/products" activeClassName="active" className="nav-link">CATÁLOGO</NavLink>
+                        <NavLink to="/products" activeClassName="active" className="nav-link" onClick={handleResetSession}>CATÁLOGO</NavLink>
                     </li>
                     <li className={`${isAllowedByRole(['ROLE_ADMIN','ROLE_OPERATOR']) ? 'd-inline' : 'd-none'}`}>
-                        <NavLink to="/admin" activeClassName="active" className="nav-link">ADMIN</NavLink>
+                        <NavLink to="/admin" activeClassName="active" className="nav-link" onClick={handleResetSession}>ADMIN</NavLink>
                     </li>
                 </ul>
             </div>

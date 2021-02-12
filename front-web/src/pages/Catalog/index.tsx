@@ -9,11 +9,12 @@ import { Category, ProductResponse } from '../../core/types/Products';
 import ProductCardLoader from './components/Loaders/ProductCardLoader';
 import ProductFilters from 'core/components/ProductFilters';
 
-const Catalog = () => {
 
+const Catalog = () => {
     const [productsResponse, setProductResponse] = useState<ProductResponse>();
     const [isLoading, setIsLoading] = useState(false);
-    const [activePage, setActivePage] = useState(0);
+    const initialPage = () => Number(window.sessionStorage.getItem("page") || null)
+    const [activePage, setActivePage] = useState(initialPage);
     const [name,setName] = useState('');
     const [category,setCategory] = useState<Category>();
 
@@ -25,7 +26,7 @@ const Catalog = () => {
             categoryId: category?.id
         }
 
-
+        window.sessionStorage.setItem("page",String(activePage))
         // iniciar o loader
         setIsLoading(true);
         makeRequest({ url: '/products', params })
@@ -109,7 +110,7 @@ const Catalog = () => {
             {/*            <Pagination 
             totalPages={productsResponse.totalPages}
             activePage={activePage}
-            onChange={page => setActivePage(page)}
+            onChange={pageCat => setActivePage(pageCat)}
             /> */}
 
         </div>
